@@ -1,39 +1,28 @@
 <template>
-  <div>
-    <div class="section">
+  <div class="section">
+    <router-link :to="'/'">
       <Header />
-      <UseApi />
-
-      <!-- <Main /> -->
-    </div>
+    </router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-// import Main from "./components/Main.vue";
 import Header from "./components/Header.vue";
-import UseApi from "./components/UseApi";
 
 export default {
   name: "app",
   components: {
-    // Main,
-    Header,
-    UseApi
+    Header
   }
 };
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+a {
+  text-decoration: none;
+  color: black;
 }
-
 @media (min-width: 730px) {
   .section {
     width: 50rem;
