@@ -1,61 +1,31 @@
 <template>
   <div id="UseApi">
-    <!-- <div v-if="hasResult">
-      <div v-for="post in posts" v-bind:key="post.id">
-        <h1></h1>
-        <p></p>
-      </div>
-    <button v-else v-on:click="searchTerm">글 불러오기</button>
-<<<<<<< HEAD
-    </div>-->
-=======
-    </div> -->
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
-
     <div class="menu">
       <div>
         <button v-on:click="categoryFetch">필터</button>
-        <button v-on:click="adsFetch">get ads data</button>
-        <button v-on:click="adsImgFetch">get ads img data</button>
       </div>
       <div>
         <button v-on:click="fetchAscData">오름차순</button>
         <button v-on:click="fetchDescData">내림차순</button>
       </div>
     </div>
-<<<<<<< HEAD
     <div class="categoryBox">
-=======
-    <!-- <div>{{ posts[2].title }}</div> -->
-    <!-- <ul v-if="posts && posts.length"> -->
-    <div class="categoryBox">
-      <!-- <div v-for="category of categorys" v-bind:key="category.id + 100"> -->
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
       <div v-if="this.toggle == true" class="categoryMenu">
         <button v-on:click="select1Fn" class="categoryItem">apple</button>
         <button v-on:click="select2Fn" class="categoryItem">banana</button>
         <button v-on:click="select3Fn" class="categoryItem">coconut</button>
       </div>
-<<<<<<< HEAD
-=======
-      <!-- </div> -->
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
     </div>
-    <!-- <li v-for="(postlist, index) of postlists" v-bind:key="index + 1000">
-      <div>{{ postlist.index }}</div>
-      <div v-if="postlist.index % 4 !== 0">
-        posts
-      </div>
-      <div v-if="postlist.index % 4 == 0 && postlist.index !== 0">ads</div>
-<<<<<<< HEAD
-    </li>-->
+
     <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
       <li v-for="(postlist, index) of postlists" v-bind:key="index">
         <div v-if="index == 0 || index % 4 !== 0">
           <div class="listBox">
-            <div class="postId">
-              <span>카테고리: {{ postlist.category_id }}</span>
-              <span>글번호: {{ postlist.id }}</span>
+            <div @click="$router.push(`/detail/${postlist.id}`)">
+              <div class="postId">
+                <span>카테고리: {{ postlist.category_id }}</span>
+                <span>글번호: {{ postlist.id }}</span>
+              </div>
             </div>
             <div class="postContents">
               <div class="postInfo">
@@ -64,34 +34,10 @@
                 <span>작성일: {{ postlist.created_at }}</span>
               </div>
               <div>
-                <div class="postTitle">{{ postlist.title.substr(0, 50) }}...</div>
-                <div class="postContent">{{ postlist.contents.substr(0, 100) }}...</div>
-=======
-    </li> -->
-    <div
-      v-infinite-scroll="loadMore"
-      infinite-scroll-disabled="busy"
-      infinite-scroll-distance="10"
-    >
-      <li v-for="(post, index) of postlists" v-bind:key="index">
-        <div v-if="index == 0 || index % 4 !== 0">
-          <div class="listBox">
-            <div class="postId">
-              <span>카테고리: {{ post.category_id }}</span>
-              <span>글번호: {{ post.id }}</span>
-            </div>
-            <div class="postContents">
-              <div class="postInfo">
-                <span>작성자: {{ post.user_id }}</span>
-                <span>|</span>
-                <span>작성일: {{ post.created_at }}</span>
-              </div>
-              <div>
-                <div class="postTitle">{{ post.title.substr(0, 50) }}...</div>
-                <div class="postContent">
-                  {{ post.contents.substr(0, 100) }}...
+                <div @click="$router.push(`/detail/${postlist.id}`)">
+                  <div class="postTitle">{{ postlist.title.substr(0, 50) }}...</div>
+                  <div class="postContent">{{ postlist.contents.substr(0, 100) }}...</div>
                 </div>
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
               </div>
             </div>
           </div>
@@ -112,13 +58,7 @@
                 </div>
                 <div class="adsContents">
                   <div class="postTitle">{{ ads.title.substr(0, 50) }}...</div>
-<<<<<<< HEAD
                   <div class="postContent">{{ ads.contents.substr(0, 100) }}...</div>
-=======
-                  <div class="postContent">
-                    {{ ads.contents.substr(0, 100) }}...
-                  </div>
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
                 </div>
               </div>
             </div>
@@ -126,38 +66,11 @@
         </div>
       </li>
     </div>
-<<<<<<< HEAD
     <div v-show="busy" class="loading">loading..</div>
   </div>
 </template>
 
 <script>
-=======
-    <!-- <li v-for="ads of adss" v-bind:key="ads.id + 1000">
-      <div class="listBox">
-        <div>{{ imgs }}</div>
-        <div class="postId">
-          <span>sponsered: {{ ads.id }}</span>
-        </div>
-        <div class="postInfo">
-          <span>image: {{ ads.img }}</span>
-        </div>
-        <div>
-          <div class="postTitle">{{ ads.title.substr(0, 50) }}...</div>
-          <div class="postContent">{{ ads.contents.substr(0, 100) }}...</div>
-        </div>
-      </div>
-    </li> -->
-    <div v-show="busy" class="loading">
-      loading..
-    </div>
-  </div>
-  <!-- <button v-on:click="button">button</button> -->
-</template>
-
-<script>
-// import Hello from "./components/Hello";
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
 import axios from "axios";
 
 export default {
@@ -175,7 +88,8 @@ export default {
       busy: false,
       next: {
         page: 1
-      }
+      },
+      filter: "asc"
     };
   },
   computed: {
@@ -193,10 +107,7 @@ export default {
     loadMore: function() {
       this.busy = true;
       this.fetchData();
-<<<<<<< HEAD
       this.adsFetch();
-=======
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
     },
     fetchData: function() {
       axios
@@ -204,7 +115,6 @@ export default {
           `https://1rcwozojf0.execute-api.ap-northeast-2.amazonaws.com/production/api/list?page=${this.next.page}&ord=asc&category[]=${this.selectCategory}&limit=10`
         )
         .then(response => {
-<<<<<<< HEAD
           const results = response.data.list.data;
 
           const foo = new Set(results);
@@ -234,67 +144,42 @@ export default {
           }
           // console.log(foolists.map(foolist => foolist.id).includes(100));
           // console.log(this.postlists);
-=======
-          // this.posts = response.data.list.data.map(post => post.id);
-          const results = response.data.list.data;
-          this.posts = results.map(post => post);
-          if (this.posts.length >= 10) {
-            this.busy = false;
-          }
-          if (this.postlists.length > 10) {
-            this.next.page = this.next.page + 1;
-          }
-          // const foo = new Set(this.postlists);
-          this.postlists = this.postlists.concat(this.posts);
-          console.log(this.posts);
-          console.log(this.postlists);
-          console.log(this.postlists.length);
-          console.log(this.next.page);
-          // console.log(response);
-          // console.log(this.postlists.map(postlist => postlist.id));
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
         })
         .catch(error => {
           console.log(error);
         });
     },
     fetchAscData: function() {
-      axios
-        .get(
-          `https://1rcwozojf0.execute-api.ap-northeast-2.amazonaws.com/production/api/list?page=${this.next.page}&ord=desc&category[]=1&limit=int`
-        )
-        .then(response => {
-<<<<<<< HEAD
-=======
-          // this.posts = response.data.list.data.map(post => post.id);
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
-          this.posts = response.data.list.data.map(post => post);
-          if (this.posts.length > 15) {
-            this.next.page = this.next.page + 1;
-          }
-          console.log(this.next.page);
-          console.log(this.posts);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      this.postlists = this.postlists.reverse();
+      // axios
+      //   .get(
+      //     `https://1rcwozojf0.execute-api.ap-northeast-2.amazonaws.com/production/api/list?page=${this.next.page}&ord=desc&category[]=1&limit=int`
+      //   )
+      //   .then(response => {
+      //     this.posts = response.data.list.data.map(post => post);
+      //     if (this.posts.length > 15) {
+      //       this.next.page = this.next.page + 1;
+      //     }
+      //     console.log(this.next.page);
+      //     console.log(this.posts);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
     },
     fetchDescData: function() {
-      axios
-        .get(
-          "https://1rcwozojf0.execute-api.ap-northeast-2.amazonaws.com/production/api/list?page=int&ord=desc&category[]=1&limit=10"
-        )
-        .then(response => {
-<<<<<<< HEAD
-=======
-          // this.posts = response.data.list.data.map(post => post.id);
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
-          this.posts = response.data.list.data.map(post => post);
-          console.log(this.posts);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      this.postlists = this.postlists.reverse();
+      // axios
+      //   .get(
+      //     "https://1rcwozojf0.execute-api.ap-northeast-2.amazonaws.com/production/api/list?page=int&ord=desc&category[]=1&limit=10"
+      //   )
+      //   .then(response => {
+      //     this.posts = response.data.list.data.map(post => post);
+      //     console.log(this.posts);
+      //   })
+      //   .catch(error => {
+      //     console.log(error);
+      //   });
     },
     categoryFetch: function() {
       axios
@@ -318,28 +203,16 @@ export default {
       this.selectCategory = 1;
       console.log(this.selectCategory);
       this.fetchData();
-<<<<<<< HEAD
-=======
-      // console.log(this.categorys);
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
     },
     select2Fn: function() {
       this.selectCategory = 2;
       console.log(this.selectCategory);
       this.fetchData();
-<<<<<<< HEAD
-=======
-      // console.log(this.categorys);
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
     },
     select3Fn: function() {
       this.selectCategory = 3;
       console.log(this.selectCategory);
       this.fetchData();
-<<<<<<< HEAD
-=======
-      // console.log(this.categorys);
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
     },
     adsFetch: function() {
       axios
@@ -349,14 +222,7 @@ export default {
         .then(res => {
           this.adss = res.data.list.data.map(ads => ads);
           this.imgs = res.data.list.data.map(ads => ads.img);
-<<<<<<< HEAD
           // this.postlists = this.postlists.concat(this.adss);
-=======
-          // this.imgs = res.data.list.data.map(ads => {
-          //   axios.get(`https://cdn.comento.kr/assignment/${ads.img}`);
-          // });
-          // console.log(this.adss);
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
         })
         .catch(err => {
           console.log(err);
@@ -366,10 +232,6 @@ export default {
       axios
         .get(`https://cdn.comento.kr/assignment/${this.imgs[1]}`)
         .then(res => {
-<<<<<<< HEAD
-=======
-          // this.imgs = res.data.list.data.map(img => img);
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
           this.image = res.data;
           console.log(this.image);
         })
@@ -389,12 +251,6 @@ export default {
           console.log(err);
         });
     }
-<<<<<<< HEAD
-=======
-    // button: function() {
-    //   alert("buttons");
-    // }
->>>>>>> 8d3e6a9ffa08ca3f5e517845e5fd31d8d9667233
   },
   created() {
     this.adsFetch();
@@ -431,6 +287,7 @@ li {
   border-bottom: 1px solid black;
   padding: 0.5rem 1rem;
   justify-content: space-between;
+  cursor: pointer;
 }
 .postInfo {
   display: flex;
@@ -439,8 +296,10 @@ li {
 }
 .postTitle {
   font-weight: bold;
+  cursor: pointer;
 }
 .postContent {
+  cursor: pointer;
 }
 .adsContents {
   padding: 1rem 0;
