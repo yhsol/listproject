@@ -1,0 +1,43 @@
+<template>
+  <div class="header">
+    <div class="title">list project</div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Header",
+  props: {
+    msg: String
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+.header {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 1rem;
+  height: 2rem;
+}
+.title {
+  color: #00c853;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+</style>
